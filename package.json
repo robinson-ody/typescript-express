@@ -1,7 +1,7 @@
 {
   "name": "typescript-server",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "./dist/server.js",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -19,5 +19,6 @@
   },
   "scripts": {
     "build": "tsc --project ./"
-  }
+  },
+  "type": "module"
 }
