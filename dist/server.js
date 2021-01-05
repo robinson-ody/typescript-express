@@ -4,6 +4,7 @@ import express from 'express';
 import chalk from 'chalk';
 import Product from './product.model.js';
 import { plainToClass } from 'class-transformer';
+import { validate } from 'class-validator';
 const app = express();
 const PORT = 8000;
 app.get('/', (_, res) => res.send('Express + TypeScript Server'));
@@ -13,5 +14,13 @@ const plainProducts = [
 ];
 const products = plainToClass(Product, plainProducts);
 products.forEach(product => console.log(product.getInformation()));
+const newProd = new Product('asd', -1);
+validate(newProd).then(errors => {
+    if (errors.length) {
+        console.log({ errors });
+        return;
+    }
+    console.log({ newProd });
+});
 app.listen(PORT, () => console.log(chalk.blueBright.bold(`⚡️[server]: Server is running at https://localhost:${PORT}`)));
 //# sourceMappingURL=server.js.map
