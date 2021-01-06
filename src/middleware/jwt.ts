@@ -16,8 +16,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     jwtPayload = <JwtPayload>jwt.verify(token, secretKey);
     res.locals.userDataAuth = jwtPayload;
   } catch (error) {
-    res.status(401).send();
-    return;
+    return res.status(401).json({ message: 'Invalid token.' });
   }
 
   // * Send a new token on every request
@@ -25,5 +24,5 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   const newToken = jwt.sign({ userId }, secretKey, { expiresIn: '1h' });
   res.setHeader('accessToken', newToken);
 
-  next();
+  return next();
 };

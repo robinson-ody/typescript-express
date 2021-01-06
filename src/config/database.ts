@@ -1,10 +1,10 @@
 import { createConnection } from 'mysql';
 import chalk from 'chalk';
 
-const host = 'YourDatabaseHost';
-const user = 'YourDatabaseUser';
-const password = 'YourDatabasePassword';
-export const database = 'YourDatabaseName';
+const host = 'localhost';
+const user = 'root';
+const password = 'admin';
+export const database = 'clientTemplate';
 const connection = createConnection({ host, user, password, database });
 
 connection.connect(error => {

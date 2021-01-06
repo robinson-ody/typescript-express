@@ -36,6 +36,7 @@ app.use('/api/user/', userRoutes);
 
 // * API Error Handling
 app.use((err: Error, _: Request, res: Response, __: NextFunction) => {
+  if (process.env.NODE_ENV !== 'production') console.log(err);
   res.status(500).json({ message: err.message || 'Terjadi kesalahan di server.' });
 });
 
